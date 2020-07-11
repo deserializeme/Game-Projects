@@ -1,0 +1,13 @@
+newmtl grid
+map_Kd -o 0 0 -s 1 1 GridBox_Default.png
+Kd 0.7560647 0.8471842 1
+d 1
+
+newmtl PlasticShinyDirt
+Kd 1.0 1.0 1.0
+d 1.0
+
+newmtl FloatingMahogany_Black
+Kd 1.0 1.0 1.0
+d 1.0
+
