@@ -1,4 +1,4 @@
-![# Interactive-Stuff](https://github.com/deserializeme/Game-Projects/blob/main/gifs/LOZ%20style%20pot%20breaking.gif)
+# Interactive-Stuff
 stuff you can play with!
 
 extract .rar and run .exe to play
