@@ -3,8 +3,7 @@ using System.Collections;
 using UnityEditor;
 using System;
 using MovementEffects;
-
-
+using System.Diagnostics;
 
 [CustomEditor(typeof(CreateKeybinds))]
 public class KeybindEditor : Editor
@@ -20,6 +19,7 @@ public class KeybindEditor : Editor
     {
         CreateKeybinds K = (CreateKeybinds)target;
 
+        
         #region pupulate the Action list with all defined actions
         foreach (CreateKeybinds.Action action in System.Enum.GetValues(typeof(CreateKeybinds.Action)))
         {
@@ -85,17 +85,18 @@ public class KeybindEditor : Editor
         EditorGUILayout.Space();
         EditorGUILayout.Space();
 
-        EditorGUILayout.BeginHorizontal();
+        //EditorGUILayout.BeginHorizontal();
         #endregion
 
         for (int i = 0; i < K.KeyBinds.Count; i++)
         {
             #region Display Controller Bindings;
+            
             if (ControlSheme == ShemeToShow.Controller)
             {
-                if(K.KeyBinds[i].Scheme == CreateKeybinds.ControllerType.Controller)
+                if (K.KeyBinds[i].Scheme == CreateKeybinds.ControllerType.Controller)
                 {
-                   
+                    
                     #region Axis setup
                     if (K.KeyBinds[i].InputMethod == CreateKeybinds.InputType.Axis)
                     {
@@ -160,6 +161,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].Sensitivity = EditorGUILayout.Slider(K.KeyBinds[i].Sensitivity, 0.0f, 2f);
                         EditorGUILayout.EndHorizontal();
                         #endregion
+
                         EditorGUILayout.EndVertical();
 
 
@@ -167,6 +169,7 @@ public class KeybindEditor : Editor
                     }
                     #endregion
 
+                   
                     #region Button setup
                     if (K.KeyBinds[i].InputMethod == CreateKeybinds.InputType.Button)
                     {
@@ -175,7 +178,7 @@ public class KeybindEditor : Editor
 
                         string[] options = K.XboxButtons;
                         int B = 0;
-                        if(K.KeyBinds[i].ButtonName != "")
+                        if (K.KeyBinds[i].ButtonName != "")
                         {
                             B = System.Array.IndexOf(options, K.KeyBinds[i].ButtonName);
                         }
@@ -186,7 +189,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].AxisB = "Cancel";
 
                         #region Name
-                        EditorGUILayout.BeginVertical();
+                        //EditorGUILayout.BeginVertical();
                         EditorGUILayout.BeginHorizontal(mystyle);
                         EditorGUILayout.LabelField(K.KeyBinds[i].Name);
                         EditorGUILayout.EndHorizontal();
@@ -204,6 +207,7 @@ public class KeybindEditor : Editor
                     }
                     #endregion
 
+                    
                     #region Key setup
                     if (K.KeyBinds[i].InputMethod == CreateKeybinds.InputType.Key)
                     {
@@ -215,7 +219,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].AxisB = "Cancel";
 
                         #region Name
-                        EditorGUILayout.BeginVertical();
+                        //EditorGUILayout.BeginVertical();
                         EditorGUILayout.BeginHorizontal(mystyle);
                         EditorGUILayout.LabelField(K.KeyBinds[i].Name);
                         EditorGUILayout.EndHorizontal();
@@ -234,8 +238,9 @@ public class KeybindEditor : Editor
             #region Display Keyboard and Mouse Bindings
             if (ControlSheme == ShemeToShow.KBM)
             {
-                if(K.KeyBinds[i].Scheme == CreateKeybinds.ControllerType.Keyboard)
+                if (K.KeyBinds[i].Scheme == CreateKeybinds.ControllerType.Keyboard)
                 {
+
                     #region Axis setup
                     if (K.KeyBinds[i].InputMethod == CreateKeybinds.InputType.Axis)
                     {
@@ -260,15 +265,17 @@ public class KeybindEditor : Editor
                         GUIStyle mystyle = new GUIStyle("Toolbar");
                         #endregion
 
+
                         K.KeyBinds[i].Key = KeyCode.None;
                         K.KeyBinds[i].ButtonCode = KeyCode.None;
 
                         #region Name
-                        EditorGUILayout.BeginVertical();
+                        //EditorGUILayout.BeginVertical();
                         EditorGUILayout.BeginHorizontal(mystyle);
                         EditorGUILayout.LabelField(K.KeyBinds[i].Name);
                         EditorGUILayout.EndHorizontal();
                         #endregion
+
                         EditorGUILayout.BeginVertical(style);
 
                         K.KeyBinds[i].InputMethod = (CreateKeybinds.InputType)EditorGUILayout.EnumPopup("Input Type", K.KeyBinds[i].InputMethod);
@@ -286,6 +293,7 @@ public class KeybindEditor : Editor
                         }
                         #endregion
 
+                       
                         #region Dead Zone Slider
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.LabelField("Dead Zone", GUILayout.MaxWidth(128));
@@ -302,10 +310,12 @@ public class KeybindEditor : Editor
 
 
                         EditorGUILayout.EndVertical();
+                        
                     }
                     #endregion
 
                     #region Button setup
+                    
                     if (K.KeyBinds[i].InputMethod == CreateKeybinds.InputType.Button)
                     {
                         #region Variables
@@ -316,7 +326,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].AxisB = "Cancel";
 
                         #region Name
-                        EditorGUILayout.BeginVertical();
+                        //EditorGUILayout.BeginVertical();
                         EditorGUILayout.BeginHorizontal(mystyle);
                         EditorGUILayout.LabelField(K.KeyBinds[i].Name);
                         EditorGUILayout.EndHorizontal();
@@ -327,6 +337,7 @@ public class KeybindEditor : Editor
                         EditorGUILayout.LabelField("Dont use Buttons for Keybaord/Mouse Bindings! Use 'Key' or 'Axis'");
                         EditorGUILayout.EndVertical();
                     }
+                    
                     #endregion
 
                     #region Key setup
@@ -340,7 +351,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].AxisB = "Cancel";
 
                         #region Name
-                        EditorGUILayout.BeginVertical();
+                        //EditorGUILayout.BeginVertical();
                         EditorGUILayout.BeginHorizontal(mystyle);
                         EditorGUILayout.LabelField(K.KeyBinds[i].Name);
                         EditorGUILayout.EndHorizontal();
@@ -353,19 +364,23 @@ public class KeybindEditor : Editor
                         EditorGUILayout.EndVertical();
                     }
                     #endregion
+
                 }
+
             }
             #endregion
 
             EditorGUILayout.Space();
+
         }
+        
         #endregion
 
 
         //base.OnInspectorGUI();
         if (GUI.changed)
         {
-            EditorUtility.SetDirty(K);
+            //  EditorUtility.SetDirty(K);
         }
     }
 
