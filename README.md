@@ -11,7 +11,7 @@ About the Projects:
 **WoWController**:
 An attempt to recreate the functionality and feel of the 3rd person camera in WoW utilizing a spline-based positioning rig on top of a customized input system.
 
-![Demo](demo/LOZ style pot breaking.gif)
+![Demo](gifs/LOZ style pot breaking.gif)
 
 **Volumetric Reverb FPS Demo**:
 Based on methods observed in David Sirland's video https://www.youtube.com/watch?v=6kaYec34gog.
