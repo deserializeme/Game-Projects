@@ -12,6 +12,9 @@ public class InputManager : MonoBehaviour {
         public event KeyDelegate KeyDown;
         public event KeyDelegate KeyUp;
 
+        public delegate void NodeDelegate(InputNode Node);
+        public event NodeDelegate NodeActive;
+
         public delegate void AxisDelegate(string Axis, float Value);
         public event AxisDelegate AxisActive;
         #endregion
@@ -41,20 +44,25 @@ public class InputManager : MonoBehaviour {
                 if (Input.GetKeyDown(myBind.Key))
                 {
                     KeyDown(myBind.Key);
+                    NodeActive(this);
                 }
 
                 if (Input.GetKeyUp(myBind.Key))
                 {
                     KeyUp(myBind.Key);
                 }
+
                 if (!Active)
                 {
                     if (Input.GetKey(myBind.Key))
                     {
                         Active = true;
                         myValue = 1;
+                        NodeActive(this);
                     }
                 }
+
+
 
                 if (Active)
                 {
@@ -178,6 +186,7 @@ public class InputManager : MonoBehaviour {
             if(ActiveH || ActiveV)
             {
                 Active = true;
+                NodeActive(this);
             }
             else
             {
@@ -259,6 +268,7 @@ public class InputManager : MonoBehaviour {
         N.KeyDown += KeyDown;
         N.KeyUp += KeyUp;
         N.AxisActive += AxisActive;
+        N.NodeActive += NodeActive;
 
         Nodes.Add(N);
     }
@@ -291,22 +301,26 @@ public class InputManager : MonoBehaviour {
 
     void KeyDown(KeyCode Key)
     {
-        //Debug.Log(Key);
-        //if (Key != KeyCode.None)
-        //{
-        //Rumble.DoRumble(XInputDotNetPure.PlayerIndex.One, 1f, 1f, .1f);
-        //}
-        
+        Debug.Log(Key);
+        if (Key != KeyCode.None)
+        {
+            Rumble.DoRumble(XInputDotNetPure.PlayerIndex.One, 1f, 1f, .1f);
+        }       
+    }
+
+    void NodeActive(InputManager.InputNode Node)
+    {
+        Debug.Log("Node Name: " + Node.Name + "Node Active: " + Node.Active  +  " Bind: " + Node.myBind + "Value: " + Node.myValue);
     }
 
     void KeyUp(KeyCode Key)
     {
-        //Debug.Log(Key);
+        Debug.Log(Key);
     }
 
     void AxisActive(string Axis, float Value)
     {
-        //Debug.Log(Axis + " " + Value);
+        Debug.Log(Axis + " " + Value);
     }
 
     void OnDisable()
@@ -316,6 +330,7 @@ public class InputManager : MonoBehaviour {
             Nodes[i].KeyDown -= KeyDown;
             Nodes[i].KeyUp -= KeyUp;
             Nodes[i].AxisActive -= AxisActive;
+            Nodes[i].NodeActive -= NodeActive;
 
         }
     }
