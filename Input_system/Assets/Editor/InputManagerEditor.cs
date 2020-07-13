@@ -27,6 +27,7 @@ public class InputManagerEditor : Editor {
     public bool Show360Input;
     public bool[] AxisFoldouts = new bool[20];
     public int AxisIndex;
+    public bool layout_options;
     GUIStyle mystyle;
 
     public override void OnInspectorGUI()
@@ -233,7 +234,7 @@ public class InputManagerEditor : Editor {
 
     void GUILayouts()
     {
-        ScreenWidth = Screen.width;
+        ScreenWidth = Screen.width / 2;
         paddingS = ScreenWidth * paddingT;
         labelS = ScreenWidth * LabelT;
         ToggleS = ScreenWidth * TogglsT;
@@ -241,22 +242,30 @@ public class InputManagerEditor : Editor {
         LableSpacingS = ScreenWidth * LableSpacingT;
         SpacingS = ScreenWidth * SpacingT;
         TextS = ScreenWidth * TextT;
+;
+        layout_options = EditorGUILayout.Toggle("layout options", layout_options);
 
-      //TextT = EditorGUILayout.Slider("Text Size", TextT, 0, 1);
-      //SpacingT = EditorGUILayout.Slider("Spacing", SpacingT, 0, 1);
-      //LableSpacingT = EditorGUILayout.Slider("Label Spacing", LableSpacingT, 0, 1);
-      //FloatT = EditorGUILayout.Slider("Float Size", FloatT, 0, 1);
-      //TogglsT = EditorGUILayout.Slider("Toggle Size", TogglsT, 0, 1);
-      //LabelT = EditorGUILayout.Slider("Lable Size", LabelT, 0, 1);
-      //paddingT = EditorGUILayout.Slider("Padding", paddingT, 0, 1);
+        if (layout_options)
+        {
+            TextT = EditorGUILayout.Slider("Text Size", TextT, 0, 1);
+            SpacingT = EditorGUILayout.Slider("Spacing", SpacingT, 0, 1);
+            LableSpacingT = EditorGUILayout.Slider("Label Spacing", LableSpacingT, 0, 1);
+            FloatT = EditorGUILayout.Slider("Float Size", FloatT, 0, 1);
+            TogglsT = EditorGUILayout.Slider("Toggle Size", TogglsT, 0, 1);
+            LabelT = EditorGUILayout.Slider("Lable Size", LabelT, 0, 1);
+            paddingT = EditorGUILayout.Slider("Padding", paddingT, 0, 1);
+        }
+        else
+        {
 
-        TextT = 0.28f;
-        SpacingT = 0.057f;
-        LableSpacingT = 0.074f;
-        FloatT = 0.15f;
-        TogglsT = 0.073f;
-        LabelT = 0.132f;
-        paddingT = 0.079f;
+            TextT = 0.28f;
+            SpacingT = 0.057f;
+            LableSpacingT = 0.074f;
+            FloatT = 0.15f;
+            TogglsT = 0.073f;
+            LabelT = 0.132f;
+            paddingT = 0.079f;
+        }
 
     }
 

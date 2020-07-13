@@ -189,7 +189,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].AxisB = "Cancel";
 
                         #region Name
-                        //EditorGUILayout.BeginVertical();
+                        EditorGUILayout.BeginVertical();
                         EditorGUILayout.BeginHorizontal(mystyle);
                         EditorGUILayout.LabelField(K.KeyBinds[i].Name);
                         EditorGUILayout.EndHorizontal();
@@ -203,6 +203,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].ButtonName = K.XboxButtons[B];
                         K.KeyBinds[i].ButtonCode = K.XboxKeyCodes[B];
                         #endregion
+                        EditorGUILayout.EndVertical();
                         EditorGUILayout.EndVertical();
                     }
                     #endregion
@@ -219,7 +220,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].AxisB = "Cancel";
 
                         #region Name
-                        //EditorGUILayout.BeginVertical();
+                        EditorGUILayout.BeginVertical();
                         EditorGUILayout.BeginHorizontal(mystyle);
                         EditorGUILayout.LabelField(K.KeyBinds[i].Name);
                         EditorGUILayout.EndHorizontal();
@@ -228,6 +229,7 @@ public class KeybindEditor : Editor
 
                         K.KeyBinds[i].InputMethod = (CreateKeybinds.InputType)EditorGUILayout.EnumPopup("Input Type", K.KeyBinds[i].InputMethod);
                         EditorGUILayout.LabelField("Dont use Keys for Controller Bindings! Use 'Button' or 'Axis'");
+                        EditorGUILayout.EndVertical();
                         EditorGUILayout.EndVertical();
                     }
                     #endregion
@@ -270,7 +272,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].ButtonCode = KeyCode.None;
 
                         #region Name
-                        //EditorGUILayout.BeginVertical();
+                        EditorGUILayout.BeginVertical();
                         EditorGUILayout.BeginHorizontal(mystyle);
                         EditorGUILayout.LabelField(K.KeyBinds[i].Name);
                         EditorGUILayout.EndHorizontal();
@@ -310,7 +312,8 @@ public class KeybindEditor : Editor
 
 
                         EditorGUILayout.EndVertical();
-                        
+                        EditorGUILayout.EndVertical();
+
                     }
                     #endregion
 
@@ -326,7 +329,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].AxisB = "Cancel";
 
                         #region Name
-                        //EditorGUILayout.BeginVertical();
+                        EditorGUILayout.BeginVertical();
                         EditorGUILayout.BeginHorizontal(mystyle);
                         EditorGUILayout.LabelField(K.KeyBinds[i].Name);
                         EditorGUILayout.EndHorizontal();
@@ -335,6 +338,7 @@ public class KeybindEditor : Editor
 
                         K.KeyBinds[i].InputMethod = (CreateKeybinds.InputType)EditorGUILayout.EnumPopup("Input Type", K.KeyBinds[i].InputMethod);
                         EditorGUILayout.LabelField("Dont use Buttons for Keybaord/Mouse Bindings! Use 'Key' or 'Axis'");
+                        EditorGUILayout.EndVertical();
                         EditorGUILayout.EndVertical();
                     }
                     
@@ -351,7 +355,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].AxisB = "Cancel";
 
                         #region Name
-                        //EditorGUILayout.BeginVertical();
+                        EditorGUILayout.BeginVertical();
                         EditorGUILayout.BeginHorizontal(mystyle);
                         EditorGUILayout.LabelField(K.KeyBinds[i].Name);
                         EditorGUILayout.EndHorizontal();
@@ -361,6 +365,7 @@ public class KeybindEditor : Editor
                         K.KeyBinds[i].InputMethod = (CreateKeybinds.InputType)EditorGUILayout.EnumPopup("Input Type", K.KeyBinds[i].InputMethod);
 
                         K.KeyBinds[i].Key = (KeyCode)EditorGUILayout.EnumPopup("Key ", K.KeyBinds[i].Key);
+                        EditorGUILayout.EndVertical();
                         EditorGUILayout.EndVertical();
                     }
                     #endregion
@@ -380,7 +385,7 @@ public class KeybindEditor : Editor
         //base.OnInspectorGUI();
         if (GUI.changed)
         {
-            //  EditorUtility.SetDirty(K);
+             EditorUtility.SetDirty(K);
         }
     }
 
