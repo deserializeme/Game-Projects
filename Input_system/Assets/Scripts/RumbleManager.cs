@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using XInputDotNetPure;
 using System.Collections.Generic;
-using MovementEffects;
+using System.Collections;
 
-public class RumbleManager
+public class RumbleManager : MonoBehaviour
 {
     public bool Rumbling;
-
+    public IEnumerator DoRumbleNow;
     public bool ControllerConnected()
     {
         bool connected = false;
@@ -28,11 +28,11 @@ public class RumbleManager
     {
         if (!Rumbling)
         {
-            Timing.RunCoroutine(RumbleNow(Duration, index, IntensityLeft, IntensityRight));
+            StartCoroutine(RumbleNow(Duration, index, IntensityLeft, IntensityRight));
         }
     }
 
-    IEnumerator<float> RumbleNow(float Duration, PlayerIndex index, float IntensityLeft, float IntensityRight)
+    IEnumerator RumbleNow(float Duration, PlayerIndex index, float IntensityLeft, float IntensityRight)
     {
         Rumbling = true;
         float start = Time.time;

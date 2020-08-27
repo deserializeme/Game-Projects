@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEditor;
 using System;
-using MovementEffects;
 using System.Diagnostics;
 
 [CustomEditor(typeof(CreateKeybinds))]
