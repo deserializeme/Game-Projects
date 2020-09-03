@@ -4,20 +4,19 @@ code exercise from HBS
 Project where given a point in 2d space, determine the closest point on a rect and the distance to 2d point. 
 returns 0 if that point is inside the rect.
 
-# Features
+![Alt Text](https://github.com/deserializeme/Game-Projects/blob/main/media/gifs/tiletime.gif)
+
+## Features
 - Visual debugging! Test a point by left clicking
 - Enable the "every frame" option to test the mouse-position in real-time
 - Disable the "draw gizmos" option to test w/out visuals for performance tuning
 - in editor you can change the scale and location of the rect for more thorough testing.
 
-# known limitations
+### known limitations
 - only supports 4-sided shapes
 - can't change individual points of the rect since its a hard-coded rect based on the min/max x/y values (Height = Length/2)
 - side detection breaks if rect has a negative scale, so the value is a range starting at 1, you dont need a negative scale rect, so im not worried about it
 - intersection point detection precision could be higher, but seems unecessary for this use case.
-
-
-![Alt Text](https://github.com/deserializeme/Game-Projects/blob/main/media/gifs/tiletime.gif)
 
 # scripts
 ### lick_for_point.cs
