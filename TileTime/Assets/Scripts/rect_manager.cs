@@ -1,9 +1,7 @@
 ﻿using MouseInput;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MathStuff;
-using RectMaker;
 
 [RequireComponent(typeof(click_for_point))]
 public class rect_manager : MonoBehaviour

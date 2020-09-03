@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fc9b6791766a6f744b22911fdecaccc2
+guid: a62541639b92b8148ac72f0f7d0f857e
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: KenVector Future
+  fontName: Share Tech Mono
   fontNames:
-  - KenVector Future
+  - Share Tech Mono
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

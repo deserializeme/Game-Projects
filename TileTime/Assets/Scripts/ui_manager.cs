@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
-using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(rect_manager))]
 public class ui_manager : MonoBehaviour
@@ -11,6 +9,9 @@ public class ui_manager : MonoBehaviour
     public TextMeshProUGUI point_value;
     public TextMeshProUGUI i_point_value;
     public TextMeshProUGUI inside_value;
+    public Toggle frame_toggle;
+    public Toggle gizmo_toggle;
+
 
     private float _distance;
     float distance
@@ -107,5 +108,16 @@ public class ui_manager : MonoBehaviour
             inside = rm.click_is_inside_rect;
         }
 
+        if(rm.every_frame != frame_toggle.isOn)
+        {
+            rm.every_frame = frame_toggle.isOn;
+        }
+
+        if(rm.draw_debug != gizmo_toggle.isOn)
+        {
+            rm.draw_debug = gizmo_toggle.isOn;
+        }
+
     }
+
 }
