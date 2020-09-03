@@ -1,7 +1,9 @@
-# TileTime!
-code exercise from HBS
+# TileTime! - code exercises from HBS
 
-Project where given a point in 2d space, determine the closest point on a rect and the distance to 2d point. 
+
+# Scenes:
+## rectangle_problem
+Scene where given a point in 2d space, determine the closest point on a rect and the distance to 2d point. 
 returns 0 if that point is inside the rect.
 
 ![Alt Text](https://github.com/deserializeme/Game-Projects/blob/main/media/gifs/tiletime.gif)
