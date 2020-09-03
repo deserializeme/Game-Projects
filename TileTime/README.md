@@ -18,7 +18,7 @@ returns 0 if that point is inside the rect.
 - side detection breaks if rect has a negative scale, so the value is a range starting at 1, you dont need a negative scale rect, so im not worried about it
 - intersection point detection precision could be higher, but seems unecessary for this use case.
 
-scripts:    
+### scripts:    
  - click_for_point.cs - handles getting your mouse position    
  - find_intersection.cs - math library of static functions to handle to heavy vector math work.    
  - rect_maker.cs - struct that defines the rect we will be testing with as defined in requirements, added a couple fields because i make my own destiny.    
