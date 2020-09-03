@@ -19,11 +19,11 @@ returns 0 if that point is inside the rect.
 - intersection point detection precision could be higher, but seems unecessary for this use case.
 
 scripts:    
- click_for_point.cs - handles getting your mouse position    
- find_intersection.cs - math library of static functions to handle to heavy vector math work.    
- rect_maker.cs - struct that defines the rect we will be testing with as defined in requirements, added a couple fields because i make my own destiny.    
- rect_manager.cs - manages the rect, mouse position, and most of the core loop. serves as our link to other scripts (namely the UI)    
- ui_manager.cs - pulls values from rect_manager.cs to drive a small UI.   
+ - click_for_point.cs - handles getting your mouse position    
+ - find_intersection.cs - math library of static functions to handle to heavy vector math work.    
+ - rect_maker.cs - struct that defines the rect we will be testing with as defined in requirements, added a couple fields because i make my own destiny.    
+ - rect_manager.cs - manages the rect, mouse position, and most of the core loop. serves as our link to other scripts (namely the UI)    
+ - ui_manager.cs - pulls values from rect_manager.cs to drive a small UI.   
 
 
 
