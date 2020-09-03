@@ -846,8 +846,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e47c1cb7461154e8bceeaa97c77b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draw_debug: 1
-  every_frame: 1
+  draw_debug: 0
+  every_frame: 0
   rect_scale: 36.4
   handle_scale: 1.56
   rect_center: {x: 0, y: 0, z: 0}
@@ -1865,10 +1865,10 @@ RectTransform:
   m_Father: {fileID: 1046041594}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -774.78, y: 291}
-  m_SizeDelta: {x: 370.7727, y: 49.79693}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 185.21997, y: -208}
+  m_SizeDelta: {x: 370.7727, y: 49.796936}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1454139625
 MonoBehaviour:
