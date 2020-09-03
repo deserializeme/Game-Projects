@@ -1,4 +1,4 @@
-# TiltTime!
+# TileTime!
 code exercise from HBS
 
 Project where given a point in 2d space, determine the closest point on a rect and the distance to 2d point. 
