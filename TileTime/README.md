@@ -24,6 +24,22 @@ returns 0 if that point is inside the rect.
  - rect_maker.cs - struct that defines the rect we will be testing with as defined in requirements, added a couple fields because i make my own destiny.    
  - rect_manager.cs - manages the rect, mouse position, and most of the core loop. serves as our link to other scripts (namely the UI)    
  - ui_manager.cs - pulls values from rect_manager.cs to drive a small UI.   
+ 
+
+
+
+## TilePreview
+Creation of a custom Editor to fulfil requests from hypothitcal designers
+
+![Alt Text](https://github.com/deserializeme/Game-Projects/blob/main/media/images/custom-editor.PNG)
+
+
+### scripts:    
+ - world_tile_editor.cs - custom editor
+
+
+
+
 
 
 
