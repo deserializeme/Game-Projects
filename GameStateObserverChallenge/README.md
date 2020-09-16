@@ -1,4 +1,8 @@
-switching to a delegate listening so we can have multiple objects/scripts/players subscribe 
+
+
+
+
+- switching to a delegate listening so we can have multiple objects/scripts can subscribe as requested in the original directions 
  
   example:
  
@@ -53,7 +57,7 @@ we also unsubscribe with
 
 
   this way, any time our setter property changes, and we fire the coins_changed(value) delgate event, 
-  we will automatically invoke the sobscriber method ie: coins_change(int coins) in ALL scripts that are subsscribed to the delegate
+  we will automatically invoke the subscriber method ie: coins_change(int coins) in ALL scripts that are subscribed to the delegate
   using this method, we can create logic that facilitates the desired behavior of observers that register for multiple properties but are only 
   notified once even when both are changed. 
   
