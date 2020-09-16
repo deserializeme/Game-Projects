@@ -7,14 +7,26 @@ public class ShopService
         return _instance;
     }
 
-    public void BuyStars(int stars, int forCoins)
+    public void BuyStars(int stars, int forCoins, float boost_time)
     {
-        GameStateService.Get().State.Stars += stars;
         UseCoins(forCoins);
+        GetStars(stars);
+        BoostPlayer(boost_time);
     }
 
     public void UseCoins(int coins)
     {
         GameStateService.Get().State.Coins -= coins;
+    }
+
+    public void GetStars(int stars)
+    {
+        GameStateService.Get().State.Stars += stars;
+    }
+
+    public void BoostPlayer(float duration)
+    {
+
+       GameStateService.Get().State.Boost_Timer += duration;
     }
 }
