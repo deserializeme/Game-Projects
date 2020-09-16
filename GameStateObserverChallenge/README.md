@@ -36,15 +36,31 @@ switching to a delegate listening so we can have multiple objects/scripts/player
     }
 ```
 
+then in the script we want to be able to track our delegate we set up a listener like this:
+
+```
+            // here we set up a simple system where a delagate listner stores the new value 
+            // each time the method it subscribes to changes
+            int _coins = 0;
+            int coins_change(int coins)
+            {
+                _coins = coins;
+                return _coins;
+            }
+```
+
 once we have this in place in another script we can subscribe to it using
   ```
-         "my_gameStateService.State.coins_changed += coins_change;"
+         "my_gameStateService.State.Coins_changed += coins_change;"
   ```
 we also unsubscribe with
  ```
-         "my_gameStateService.State.coins_changed -= coins_change;"
+         "my_gameStateService.State.Coins_changed -= coins_change;"
 ```
-  this way, anytime out setter property changes, and we fire the coins_changed(value) delgate event, 
+
+
+
+  this way, any time our setter property changes, and we fire the coins_changed(value) delgate event, 
   we will automatically invoke the sobscriber method ie: coins_change(int coins) in ALL scripts that are subsscribed to the delegate
   using this method, we can create logic that facilitates the desired behavior of observers that register for multiple properties but are only 
   notified once even when both are changed. 
