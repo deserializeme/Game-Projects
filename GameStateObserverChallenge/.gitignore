@@ -1,0 +1,12 @@
+.idea
+Assets/Plugins
+Assembly-CSharp.csproj
+Tests.csproj
+Library
+Logs
+Packages
+Temp
+GameStateObserverChallenge.sln
+obj
+Plugins.meta
+Main.csproj
