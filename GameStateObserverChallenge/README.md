@@ -1,12 +1,4 @@
 switching to a delegate listening so we can have multiple objects/scripts/players subscribe 
-
- 1. create the delegate type - in this case an int, but can be a void, bool, string etc..
-
- 2. create and event of the delagate type that other objects can subscribe to and be notified of once it changes
-
- 3. change our getters and setters to use the new delegate event
-
- 4. now we need to create the method that will subscrive to these events in another script
  
   example:
  
