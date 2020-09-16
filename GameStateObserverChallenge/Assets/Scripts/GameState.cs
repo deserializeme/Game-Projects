@@ -21,10 +21,10 @@ public class GameState
     //   }
     //
     //  - once we have this in place in another script we can subscribe to it using
-    //         "my_gameStateService.State.coins_changed += coins_change;"
+    //         "my_gameStateService.State.Coins_changed += coins_change;"
     //  
     // - we also unsubscribe with
-    //         "my_gameStateService.State.coins_changed -= coins_change;"
+    //         "my_gameStateService.State.Coins_changed -= coins_change;"
     //
     //  this way, anytime out setter property changes, and we fire the coins_changed(value) delgate event, 
     //  we will automatically invoke the sobscriber method ie: coins_change(int coins) in ALL scripts that are subsscribed to the delegate
