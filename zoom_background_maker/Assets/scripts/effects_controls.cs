@@ -692,15 +692,15 @@ public class effects_controls : MonoBehaviour
         if (tv_on)
         {
             tv_point_light.intensity = 1.5f;
-            tv_material_renderer.material.SetColor("_EmissionColor", tv_color);
+            tv_material_renderer.sharedMaterial.SetColor("_EmissionColor", tv_color);
             DynamicGI.SetEmissive(tv_material_renderer, tv_color); // Pass your objet's renderer which emissive material
         }
         else
         {
             tv_point_light.intensity = 0;
             tv_color = Color.black;
-            tv_material_renderer.material.SetColor("_EmissionColor", tv_color);
-            tv_material_renderer.material.SetColor("Albedo", tv_color);
+            tv_material_renderer.sharedMaterial.SetColor("_EmissionColor", tv_color);
+            tv_material_renderer.sharedMaterial.SetColor("Albedo", tv_color);
             DynamicGI.SetEmissive(tv_material_renderer, tv_color); // Pass your objet's renderer which emissive material
         }
     }
