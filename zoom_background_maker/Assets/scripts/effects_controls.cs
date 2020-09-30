@@ -5,6 +5,8 @@ using UnityEngine.Rendering.PostProcessing;
 using TMPro;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using Microsoft.Win32;
+using cam_manager;
 
 public class effects_controls : MonoBehaviour
 {
@@ -29,6 +31,8 @@ public class effects_controls : MonoBehaviour
     public TMP_Text video_url;
     VideoPlayer video_player;
     public Image swatch;
+    public TMP_Text camera_view_name_text;
+
 
     Color finalValue;
     bool flickering;
@@ -45,7 +49,6 @@ public class effects_controls : MonoBehaviour
         set
         {
             var input = value;
-            Debug.Log(overhead_light_color + " " + value);
             if (input != _overhead_light_color)
             {
                 _overhead_light_color = value;
@@ -78,6 +81,7 @@ public class effects_controls : MonoBehaviour
                 Color c = overhead_light_color;
                 c.r = color_r_value;
                 overhead_light_color = c;
+                cm.working_profile.light_color_r = color_r_value;
             }
         }
     }
@@ -101,6 +105,7 @@ public class effects_controls : MonoBehaviour
                 Color c = overhead_light_color;
                 c.g = color_g_value;
                 overhead_light_color = c;
+                cm.working_profile.light_color_g = color_g_value;
             }
         }
     }
@@ -124,6 +129,7 @@ public class effects_controls : MonoBehaviour
                 Color c = overhead_light_color;
                 c.b = color_b_value;
                 overhead_light_color = c;
+                cm.working_profile.light_color_b = color_b_value;
             }
         }
     }
@@ -147,6 +153,7 @@ public class effects_controls : MonoBehaviour
                 Color c = overhead_light_color;
                 c.a = color_a_value;
                 overhead_light_color = c;
+                cm.working_profile.light_color_a = color_a_value;
             }
         }
     }
@@ -169,6 +176,7 @@ public class effects_controls : MonoBehaviour
                 _overhead_light_intensity = value;
                 finalValue = overhead_light_color * overhead_light_intensity;
                 Emissive_Lights();
+                cm.working_profile.overhead_strength = overhead_light_intensity;
             }
         }
     }
@@ -190,6 +198,7 @@ public class effects_controls : MonoBehaviour
             {
                 _spot_light_intensity = value;
                 Spot_Lights();
+                cm.working_profile.spot_strength = spot_light_intensity;
             }
         }
     }
@@ -210,6 +219,7 @@ public class effects_controls : MonoBehaviour
             if (input != _sun_intensity)
             {
                 sun.intensity = input;
+                cm.working_profile.sun_strength = sun.intensity;
             }
         }
     }
@@ -232,6 +242,7 @@ public class effects_controls : MonoBehaviour
                 _ambient_intensity = input;
                 Color c = overhead_light_color * ambient_intensity;
                 RenderSettings.ambientLight = c;
+                cm.working_profile.ambient_strength = ambient_intensity;
             }
         }
     }
@@ -256,13 +267,14 @@ public class effects_controls : MonoBehaviour
                 if (bloom != null)
                 {
                     bloom.intensity.value = bloom_intensity;
+                    cm.working_profile.bloom_intensity = bloom_intensity;
                 }
             }
         }
     }
     #endregion
 
-    //Bloom Intensity
+    //Bloom threshold
     #region bloom threshold 
     float _bloom_threshold;
     public float bloom_threshold
@@ -281,6 +293,7 @@ public class effects_controls : MonoBehaviour
                 if (bloom != null)
                 {
                     bloom.threshold.value = bloom_threshold;
+                    cm.working_profile.bloom_threshold = bloom_threshold;
                 }
             }
         }
@@ -306,6 +319,7 @@ public class effects_controls : MonoBehaviour
                 if (bloom != null)
                 {
                     bloom.enabled.value = bloom_enabled;
+                    cm.working_profile.bloom_enabled = bloom_enabled;
                 }
             }
         }
@@ -324,7 +338,6 @@ public class effects_controls : MonoBehaviour
         set
         {
             var input = value;
-            Debug.Log(value);
             if (input != _DOF_focal_distance)
             {
                 _DOF_focal_distance = value;
@@ -335,10 +348,12 @@ public class effects_controls : MonoBehaviour
                     if (auto_DOF)
                     {
                         dof.focusDistance.value = auto_DOF_focal_distance;
+                        cm.working_profile.dof_focal_distance = auto_DOF_focal_distance;
                     }
                     else
                     {
                         dof.focusDistance.value = DOF_focal_distance;
+                        cm.working_profile.dof_focal_distance = DOF_focal_distance;
                     }
 
                     DOF_Values();
@@ -434,6 +449,7 @@ public class effects_controls : MonoBehaviour
                 if (dof != null)
                 {
                     dof.enabled.value = DOF_enabled;
+                    cm.working_profile.dof_enabled = DOF_enabled;
                 }
             }
         }
@@ -455,6 +471,7 @@ public class effects_controls : MonoBehaviour
             if (input != _auto_DOF)
             {
                 _auto_DOF = value;
+                cm.working_profile.auto_dof = auto_DOF;
             }
         }
     }
@@ -505,6 +522,7 @@ public class effects_controls : MonoBehaviour
             {
                 _window_video = value;
                 Window_Options();
+                cm.working_profile.window_video = window_video;
             }
         }
     }
@@ -555,6 +573,7 @@ public class effects_controls : MonoBehaviour
                 _tv_light_intensity = value;
                 tv_color = Color.white * tv_light_intensity;
                 TV_Options();
+                cm.working_profile.tv_brightness = tv_light_intensity;
             }
         }
     }
@@ -576,6 +595,141 @@ public class effects_controls : MonoBehaviour
             {
                 _tv_on = value;
                 TV_Options();
+                cm.working_profile.tv_on = tv_on;
+            }
+        }
+    }
+    #endregion
+
+    //camera view
+    #region camera view
+    int _camera_view;
+    public int camera_view
+    {
+        get
+        {
+            return _camera_view;
+        }
+        set
+        {
+            var input = value;
+            if (input != _camera_view)
+            {
+                _camera_view = value;
+                cm.active_look = _camera_view;
+                camera_view_name_text.SetText(cm.looks_book[cm.active_look].name);
+                cm.working_profile.look = cm.looks_book[cm.active_look];
+            }
+        }
+    }
+    #endregion
+
+    #region auto toggle camera views
+    bool _auto_view_toggle;
+    public bool auto_view_toggle
+    {
+        get
+        {
+            return _auto_view_toggle;
+        }
+        set
+        {
+            var input = value;
+            if (input != _auto_view_toggle)
+            {
+                _auto_view_toggle = value;
+            }
+        }
+    }
+    #endregion
+
+    //Camera height
+    #region camera height
+    float _camera_height;
+    public float camera_height
+    {
+        get
+        {
+            return _camera_height;
+        }
+        set
+        {
+            var input = value;
+            if (input != _camera_height)
+            {
+                _camera_height = value;
+                cm.cam.y = camera_height;
+                cm.working_profile.look.camera_position = cm.cam;
+            }
+        }
+    }
+    #endregion
+
+    //target height
+    #region camera target height
+    float _target_height;
+    public float target_height
+    {
+        get
+        {
+            return _target_height;
+        }
+        set
+        {
+            var input = value;
+            if (input != _target_height)
+            {
+                _target_height = value;
+                cm.target.y = value;
+                cm.working_profile.look.camera_target = cm.target;
+            }
+        }
+    }
+    #endregion
+
+    //Sun X
+    #region sun X rotation
+    float _sun_x;
+    public float sun_x
+    {
+        get
+        {
+            return _sun_x;
+        }
+        set
+        {
+            var input = value;
+            if (input != _sun_x)
+            {
+                _sun_x = value;
+                var rotationVector = sun.transform.rotation.eulerAngles;
+                rotationVector.x = sun_x;
+                sun.transform.rotation = Quaternion.Euler(rotationVector);
+                cm.working_profile.sun_x = sun_x;
+            }
+        }
+    }
+    #endregion
+
+    //Sun Y
+    #region sun Y rotation
+    float _sun_y;
+    public float sun_y
+    {
+        get
+        {
+            return _sun_y;
+        }
+        set
+        {
+            var input = value;
+            if (input != _sun_y)
+            {
+                _sun_y = value;
+                var rotationVector = sun.transform.rotation.eulerAngles;
+                rotationVector.y = sun_y;
+                sun.transform.rotation = Quaternion.Euler(rotationVector);
+                cm.working_profile.sun_y = sun_y;
             }
         }
     }
@@ -585,6 +739,7 @@ public class effects_controls : MonoBehaviour
     void Start()
     {
         cm = camera_mmanager_object.GetComponent<camera_manager>();
+        cm.working_profile = new profile();
         overhead_light_color = startColor;
         video_player = outside_video.GetComponent<VideoPlayer>();
         video_player.url = "https://media.istockphoto.com/videos/zombie-silhouettes-behind-glass-video-id483034544";
@@ -593,6 +748,14 @@ public class effects_controls : MonoBehaviour
         DOF_enabled = true;
         DOF_focal_length = 10;
         window_video = true;
+        camera_view = 0;
+        cm.active_look = _camera_view;
+        camera_view_name_text.SetText(cm.looks_book[cm.active_look].name);
+        auto_view_toggle = false;
+        tv_color = Color.black;
+        tv_on = true;
+        tv_light_intensity = 2;
+        TV_Options();
     }
 
     // Update is called once per frame
@@ -692,15 +855,16 @@ public class effects_controls : MonoBehaviour
         if (tv_on)
         {
             tv_point_light.intensity = 1.5f;
+            tv_material_renderer.sharedMaterial.SetColor("_Color", tv_color);
             tv_material_renderer.sharedMaterial.SetColor("_EmissionColor", tv_color);
             DynamicGI.SetEmissive(tv_material_renderer, tv_color); // Pass your objet's renderer which emissive material
         }
         else
         {
             tv_point_light.intensity = 0;
-            tv_color = Color.black;
+            tv_light_intensity = -1;
+            tv_material_renderer.sharedMaterial.SetColor("_Color", tv_color);
             tv_material_renderer.sharedMaterial.SetColor("_EmissionColor", tv_color);
-            tv_material_renderer.sharedMaterial.SetColor("Albedo", tv_color);
             DynamicGI.SetEmissive(tv_material_renderer, tv_color); // Pass your objet's renderer which emissive material
         }
     }
@@ -741,6 +905,22 @@ public class effects_controls : MonoBehaviour
 
         Debug.Log("Done Preparing Video");
         //video_player.Play();
+    }
+
+    public void increment_camera_view()
+    {
+        if(camera_view < cm.looks_book.Count - 1)
+        {
+            camera_view = camera_view + 1;
+        }
+    }
+
+    public void decriment_camera_view()
+    {
+        if (camera_view > 0)
+        {
+            camera_view = camera_view - 1;
+        }
     }
 
 }

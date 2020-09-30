@@ -2,71 +2,120 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class camera_manager : MonoBehaviour
+namespace cam_manager
 {
-
-    //all our pre-made camera looks
-    public List<camera_look> looks_book = new List<camera_look>();
-    
-    //index that indicates the actice look
-    public int active_look;
-    
-    //the current look
-    public camera_look look;
-    
-    //the camera that does the looking
-    public Camera look_camera;
-
-    public bool draw_gizmos;
-
-    private void Start()
+    [ExecuteInEditMode]
+    public class camera_manager : MonoBehaviour
     {
-        look = looks_book[active_look];
-        change_look();
-        StartCoroutine(changelook());
-    }
+        public profile working_profile;
 
-    void Update()
-    {
-        if(looks_book[active_look].camera_position != look.camera_position)
+        //all our pre-made camera looks
+        public List<camera_look> looks_book = new List<camera_look>();
+
+        //index that indicates the actice look
+        int _active_look;
+        public int active_look
         {
-            look = looks_book[active_look];
-            change_look();
-        }
-
-        look_camera.transform.LookAt(look.camera_target);   
-    }
-
-    void change_look()
-    {
-        look_camera.transform.position = look.camera_position;
-    }
-
-    public void nextlook()
-    {
-        active_look = Random.Range(0, looks_book.Count - 1);
-        StartCoroutine(changelook());
-
-    }
-    public IEnumerator changelook()
-    {
-
-        yield return new WaitForSeconds(2);
-        nextlook();
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (looks_book.Count > 0)
-        {
-            if (draw_gizmos)
+            get
             {
-                look = looks_book[active_look];
-                Gizmos.color = Color.green;
-                Gizmos.DrawSphere(look.camera_position, 1f);
-                Gizmos.DrawSphere(look.camera_target, 1f);
-                Gizmos.DrawLine(look.camera_target, look.camera_position);
+                return _active_look;
+            }
+            set
+            {
+                var input = value;
+                if (input != _active_look)
+                {
+                    var old = _active_look;
+
+                    if (!lerping)
+                    {
+                        _active_look = value;
+                        look = looks_book[active_look];
+                        lerping = true;
+                        StartCoroutine(lerp_look(looks_book[old], looks_book[value]));
+                    }
+                }
             }
         }
+
+        //the current look
+        public camera_look look;
+
+        //the camera that does the looking
+        public Camera look_camera;
+
+        public Vector3 cam;
+        public Vector3 target;
+
+        bool lerping;
+
+        private void Start()
+        {
+            look = looks_book[active_look];
+            working_profile.look = look;
+            cam = look.camera_position;
+            target = look.camera_target;
+        }
+
+        void LateUpdate()
+        {
+            look_camera.transform.position = cam;
+            look_camera.transform.LookAt(target);
+        }
+
+        public IEnumerator lerp_look(camera_look old_look, camera_look new_look)
+        {
+            float journey = 0f;
+            while (journey <= .5f)
+            {
+                journey = journey + Time.deltaTime;
+                float percent = Mathf.Clamp01(journey / .5f);
+
+                cam = Vector3.Lerp(old_look.camera_position, new_look.camera_position, percent);
+                target = Vector3.Lerp(old_look.camera_target, new_look.camera_target, percent);
+
+                yield return null;
+            }
+
+            lerping = false;
+        }
+
+    }
+
+    public class profile
+    {
+        public camera_look look;
+
+        public float sun_strength;
+        public float sun_x;
+        public float sun_y;
+
+        public float overhead_strength;
+        public float spot_strength;
+        public float ambient_strength;
+
+        public float light_color_r;
+        public float light_color_g;
+        public float light_color_b;
+        public float light_color_a;
+
+        public bool bloom_enabled;
+        public float bloom_intensity;
+        public float bloom_threshold;
+
+        public bool auto_dof;
+        public bool dof_enabled;
+        public float dof_focal_distance;
+
+        public bool window_video;
+        public string window_video_url;
+
+        public bool tv_on;
+        public float tv_brightness;
+        public string tv_url;
+
+        public string poster_1_url;
+        public string poster_2_url;
+        public string poster_3_url;
     }
 }

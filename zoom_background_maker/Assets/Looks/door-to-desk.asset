@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: door-to-desk
   m_EditorClassIdentifier: 
   camera_position: {x: -11.13, y: 4, z: 3.71}
-  camera_target: {x: 5.42, y: 3.75, z: -3.54}
+  camera_target: {x: 40.42, y: -18.45, z: -3.54}
   description: at door, looking at self at desk

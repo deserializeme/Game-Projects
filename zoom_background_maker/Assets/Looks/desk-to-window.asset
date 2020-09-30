@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bed8fca6e87fb4ca9d025b423bd15e, type: 3}
   m_Name: desk-to-window
   m_EditorClassIdentifier: 
-  camera_position: {x: 7.46, y: 4, z: -6.96}
+  camera_position: {x: 7.46, y: 8.08, z: -6.96}
   camera_target: {x: -4.85, y: 4.01, z: 9.63}
   description: at desk, looking towards window
