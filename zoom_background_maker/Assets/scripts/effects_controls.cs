@@ -30,6 +30,8 @@ public class effects_controls : MonoBehaviour
     public TMP_Text hex_code_field;
     public TMP_Text video_url;
     VideoPlayer video_player;
+    public GameObject tv_video_screen;
+    VideoPlayer tv_player;
     public Image swatch;
     public TMP_Text camera_view_name_text;
 
@@ -742,7 +744,9 @@ public class effects_controls : MonoBehaviour
         cm.working_profile = new profile();
         overhead_light_color = startColor;
         video_player = outside_video.GetComponent<VideoPlayer>();
-        video_player.url = "https://media.istockphoto.com/videos/zombie-silhouettes-behind-glass-video-id483034544";
+        video_player.url = "https://media.istockphoto.com/videos/horrible-silhouette-scary-supernatural-alien-strange-creature-video-id468710844";
+        tv_player = tv_video_screen.GetComponent<VideoPlayer>();
+        tv_player.url = "https://media.istockphoto.com/videos/zombie-alert-going-on-and-off-video-id501297820";
         bloom_enabled = true;
         auto_DOF = true;
         DOF_enabled = true;

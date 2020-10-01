@@ -179,4 +179,19 @@ public class UI_driver : MonoBehaviour
     {
         toggle_toggle();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Toggles.activeSelf)
+            {
+                Toggles.SetActive(false);
+            }
+            else
+            {
+                Toggles.SetActive(true);
+            }
+        }
+    }
 }
