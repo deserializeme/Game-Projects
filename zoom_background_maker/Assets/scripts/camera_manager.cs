@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace cam_manager
 {
-    [ExecuteInEditMode]
+    [System.Serializable]
     public class camera_manager : MonoBehaviour
     {
         public profile working_profile;
@@ -82,6 +82,7 @@ namespace cam_manager
 
     }
 
+    [System.Serializable]
     public class profile
     {
         public camera_look look;
