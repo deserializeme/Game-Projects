@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bed8fca6e87fb4ca9d025b423bd15e, type: 3}
   m_Name: desk to self
   m_EditorClassIdentifier: 
-  camera_position: {x: 10.68449, y: 6.81384, z: -20.722069}
-  camera_target: {x: 24.460966, y: 4.18, z: -24.583406}
+  camera_position: {x: 7.950682, y: 13.703975, z: -18.594837}
+  camera_target: {x: 13.488386, y: 12.711505, z: -18.334354}
   description: from desk, looking at self - like a laptop camera

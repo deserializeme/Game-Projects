@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bed8fca6e87fb4ca9d025b423bd15e, type: 3}
   m_Name: door-to-desk
   m_EditorClassIdentifier: 
-  camera_position: {x: -11.13, y: 4, z: 3.71}
-  camera_target: {x: 40.42, y: -18.45, z: -3.54}
+  camera_position: {x: -37.457695, y: 10.938168, z: 8.037136}
+  camera_target: {x: 40.42, y: 6.1704407, z: -30.219032}
   description: at door, looking at self at desk

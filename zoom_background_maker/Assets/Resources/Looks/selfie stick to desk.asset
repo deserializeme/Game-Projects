@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bed8fca6e87fb4ca9d025b423bd15e, type: 3}
   m_Name: selfie stick to desk
   m_EditorClassIdentifier: 
-  camera_position: {x: 10.83, y: 6.22, z: -3.49}
-  camera_target: {x: 5.93, y: 4, z: -3.69}
+  camera_position: {x: 19.24449, y: 15.946119, z: -18.241068}
+  camera_target: {x: 30.096083, y: 11.244541, z: -16.485506}
   description: from above, with desk behind

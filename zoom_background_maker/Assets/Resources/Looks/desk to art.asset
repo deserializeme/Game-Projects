@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bed8fca6e87fb4ca9d025b423bd15e, type: 3}
   m_Name: desk to art
   m_EditorClassIdentifier: 
-  camera_position: {x: -5.601551, y: 13.242558, z: -24.860771}
-  camera_target: {x: 19.0116, y: 13.061657, z: -19.037111}
+  camera_position: {x: 20.555714, y: 15.726463, z: -13.250978}
+  camera_target: {x: -1.8690109, y: 11.618628, z: -26.005674}
   description: at desk, looking towards art

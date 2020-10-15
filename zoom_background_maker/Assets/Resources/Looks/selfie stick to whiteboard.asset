@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bed8fca6e87fb4ca9d025b423bd15e, type: 3}
   m_Name: selfie stick to whiteboard
   m_EditorClassIdentifier: 
-  camera_position: {x: 6, y: 4.5, z: 3}
-  camera_target: {x: 6, y: 4, z: 8}
+  camera_position: {x: 19.72021, y: 21.529915, z: 10.614841}
+  camera_target: {x: 20.662498, y: 14.690275, z: 29.794132}
   description: from above, with whiteboard behind
